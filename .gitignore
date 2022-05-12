@@ -1,6 +1,0 @@
-*/*
-!/server.c
-!/client.c
-!/server.h
-!/client.h
-!/Makefile
