@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:30:27 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/12 16:51:31 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/13 13:43:46 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	print_is_precision(t_status **status, char *str)
 	}
 }
 
-int	print_s(t_status *status, va_list *ap)
+int	print_s(t_status *status, va_list *ap, char *null)
 {
 	long		precision;
 	long long	len;
@@ -49,10 +49,7 @@ int	print_s(t_status *status, va_list *ap)
 	precision = status->precision;
 	str = va_arg(*ap, char *);
 	if (str == NULL)
-	{
-		status->ret += ft_putnstr("(null)", status->precision);
-		return ((int)status->ret);
-	}
+		str = null;
 	len = (long long)ft_strlen(str);
 	if (len >= INT_MAX)
 		return (-1);
