@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:37:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/13 17:50:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/13 17:54:23 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char const *argv[])
 	pid = ft_atoi(argv[1]);
 	if (pid == 0)
 	{
-		ft_printf("pid is 0");
+		ft_printf("Don't use 0 pid");
 		exit(1);
 	}
 	while (argv[2][i])
