@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:37:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/13 16:45:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/13 17:50:51 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	send_char(pid_t pid, char ch)
 	while (i >= 0)
 	{
 		if (kill(pid, ((ch >> i) & 1) + SIGUSR1))
-		exit(1);
+		{
+			ft_printf("Failed to send signal");
+			exit(1);
+		}
 		usleep(300);
 		i--;
 	}
@@ -48,6 +51,11 @@ int	main(int argc, char const *argv[])
 		exit(1);
 	}
 	pid = ft_atoi(argv[1]);
+	if (pid == 0)
+	{
+		ft_printf("pid is 0");
+		exit(1);
+	}
 	while (argv[2][i])
 		send_char(pid, argv[2][i++]);
 	send_char(pid, EOT);
