@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 19:56:37 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/12 16:51:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/13 13:43:17 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	scan_types(char const **format, t_status *status, va_list *ap)
 	else if (**format == 'c')
 		ret = print_c_per(status, ap, 'c');
 	else if (**format == 's')
-		ret = print_s(status, ap);
+		ret = print_s(status, ap, "(null)");
 	else if (**format == 'u')
 		ret = print_u(status, ap);
 	else if (**format == 'x')
@@ -103,11 +103,9 @@ int	scan_types(char const **format, t_status *status, va_list *ap)
 
 int	scan_format(const char **format, t_status *status, va_list *ap)
 {
-	int	error;
 	int	ret;
 
 	ret = 0;
-	error = 0;
 	if (**format == '%')
 	{
 		(*format)++;

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:37:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/05/12 18:05:01 by shogura          ###   ########.fr       */
+/*   Updated: 2022/05/13 16:45:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ void	send_char(pid_t pid, char ch)
 	i = 7;
 	while (i >= 0)
 	{
-		kill(pid, ((ch >> i) & 1) + SIGUSR1);
-		usleep(500);
+		if (kill(pid, ((ch >> i) & 1) + SIGUSR1))
+		exit(1);
+		usleep(300);
 		i--;
 	}
+	usleep(200);
 }
 
 int	main(int argc, char const *argv[])
@@ -42,7 +44,6 @@ int	main(int argc, char const *argv[])
 		exit(1);
 	if (argc != 3 || ft_isdigit_num(argv[1]))
 	{
-		ft_printf("%d\n", argc);
 		ft_printf("Usage: ./client [PID] [String]");
 		exit(1);
 	}
